@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Website</title>
+    <link rel="stylesheet" href="/src/output.css">
+</head>
+<body class="font-sans h-40">
+    <div class="bg-gradient-to-b from-purple-custom to-black-custom bg-no-repeat">
+        <nav class="flex items-center justify-between px-4 py-2 border-yellow-900">
+            <img src="examen/src/Designer.png" class="h-20 w-16" alt="Logo">
+            <input type="text" class="bg-black border-white">
+            <div class="space-x-4 flex items-center">
+                <button class="h-16 w-16">
+                    <img src="examen/src/usuario.png" alt="Icono de usuario">
+                </button>
+                <button class="h-14 w-14" onclick="window.location.href='login.html'">
+                    <img src="examen/src/cerrar-sesion.png" alt="Icono de cerrar sesión">
+                </button>
+                <button class="h-14 w-14" onclick="window.location.href='cart.html'" >
+                    <img src="examen/src/carrito-de-compras.png" alt="Icono de carrito">
+                </button>
+            </div>
+        </nav>
+        <section class="py-12 flex items-center justify-between">
+            <div class="grid grid-cols-2 gap-1 bg-zinc-600 bg-opacity-50">
+                <div class="container mx-auto text-center py-48">
+                    <h1 class="text-4xl font-bold text-gray-800 mb-4">Lo mejor está por venir</h1>
+                    <p class="text-black mb-8">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta provident quisquam, odio aut ex architecto aperiam itaque quidem, hic harum omnis temporibus quibusdam tenetur sapiente in sint facilis veritatis totam!.</p>
+                    <button class="bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-800 active:bg-orange-400">Shop Now</button>
+                </div>
+                <div class="container mx-auto space-x-4 flex justify-self-end py-12 px-20">
+                    <img src="examen/src/corazon.png" alt="">
+                </div>
+            </div>
+        </section>
+        <h1 class="text-white text-4xl text-center mt-8 mb-12">Los Más Vendidos y las mejores ofertas</h1>
+        <br>
+        <section id="most-sold" class="carrusel-container grid grid-cols-2 md:grid-cols-2 gap-8 container mx-auto shadow-white h-full">
+            <!-- Aquí se insertarán dinámicamente los productos desde la API -->
+        </section>
+    </div>
+    <script src="../JS/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Producto</title>
+    <!-- Cargar estilos de Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .blur {
+            filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-gray-800 text-white">
+
+    <div id="product-details" class="container mx-auto p-4">
+        <!-- Aquí se mostrarán los detalles del producto -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+
+            const apiKey = 'sk_test_575455ab0ec53162e74107638d95109373ae21b8f5f69';
+            const url = `https://api.chec.io/v1/products/${productId}`;
+
+            const options = {
+                method: 'GET',
+                headers: {
+                    'X-Authorization': apiKey
+                }
+            };
+
+            fetch(url, options)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al obtener los datos del producto');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const product = data;
+
+                    const productDetailsHTML = `
+                        <div class="bg-black rounded-lg shadow-white p-4 text-white relative group  grid-columns-4 ">
+                            <img id="image-${product.id}" src="${product.image.url}" alt="${product.name}" class="blur transition duration-500 ease-in-out cursor-pointer h-1/4 w-1/4 " onclick="toggleBlur('image-${product.id}')">
+                            <h2 class="text-xl font-bold text-gray-200 mt-6">${product.name}</h2>
+                            <p class="text-gray-200 mb-4">${product.description}</p>
+                            <p class="text-gray-400 mb-4">${product.price.formatted_with_symbol}</p>
+                            <button class="bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-800 active:bg-orange-400 add-to-cart">Agregar al carrito</button>
+                        </div>
+                    `;
+
+                    const productContainer = document.getElementById('product-details');
+                    productContainer.innerHTML = productDetailsHTML;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    const productContainer = document.getElementById('product-details');
+                    productContainer.innerHTML = `<p>Error al cargar los detalles del producto.</p>`;
+                });
+        });
+
+        function toggleBlur(imageId) {
+            const image = document.getElementById(imageId);
+            image.classList.toggle('blur');
+        }
+    </script>
+
+</body>
+</html>
